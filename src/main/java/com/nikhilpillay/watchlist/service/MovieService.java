@@ -9,4 +9,6 @@ public interface MovieService {
   void submitMovie(Movie movie);
 
   List<Movie> findAll();
+
+  void deleteById(Long id);
 }
