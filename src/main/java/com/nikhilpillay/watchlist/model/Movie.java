@@ -1,32 +1,33 @@
 package com.nikhilpillay.watchlist.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @Entity
+@RequiredArgsConstructor
 public class Movie {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  String name;
+  private String name;
 
-//  int releaseYear;
+  @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference
+  private List<Genre> genres = new ArrayList<>();
 
-  List<String> genres;
+  @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference
+  private List<MovieSubtitle> subtitles = new ArrayList<>();
 
   boolean isSeries;
 
-  List<String> subtitles;
-
-  @ManyToOne
-  @JoinColumn(name = "user_id", nullable = false)
-  private User submittedBy;
-
+  private String submitter;
 }
