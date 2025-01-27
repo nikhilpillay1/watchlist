@@ -13,11 +13,11 @@ import java.util.List;
 @Service
 public class MovieServiceImpl implements MovieService {
 
+  private final MovieRepository repository;
+
   public MovieServiceImpl(MovieRepository repository) {
     this.repository = repository;
   }
-
-  private final MovieRepository repository;
 
   @Override
   public void submitMovie(Movie movie) {

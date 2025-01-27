@@ -2,16 +2,18 @@ package com.nikhilpillay.watchlist.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
-
-@Data
 @Entity
-@RequiredArgsConstructor
 public class Genre {
+
+  public Genre() {
+  }
+
+  public Genre(Long id, String name, Movie movie) {
+    this.id = id;
+    this.name = name;
+    this.movie = movie;
+  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +26,27 @@ public class Genre {
   @JsonBackReference
   private Movie movie;
 
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Movie getMovie() {
+    return movie;
+  }
+
+  public void setMovie(Movie movie) {
+    this.movie = movie;
+  }
 }
