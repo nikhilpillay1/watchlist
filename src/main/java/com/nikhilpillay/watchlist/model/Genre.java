@@ -3,13 +3,16 @@ package com.nikhilpillay.watchlist.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Genre {
 
   public Genre() {
   }
 
-  public Genre(Long id, String name, Movie movie) {
+  public Genre(Long id, String name, List<Movie> movie) {
     this.id = id;
     this.name = name;
     this.movie = movie;
@@ -21,10 +24,8 @@ public class Genre {
 
   private String name;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "movie_id", nullable = false)
-  @JsonBackReference
-  private Movie movie;
+  @ManyToMany(mappedBy = "genres")
+  private List<Movie> movie = new ArrayList<>();
 
   public Long getId() {
     return id;
@@ -42,11 +43,11 @@ public class Genre {
     this.name = name;
   }
 
-  public Movie getMovie() {
+  public List<Movie> getMovie() {
     return movie;
   }
 
-  public void setMovie(Movie movie) {
+  public void setMovie(List<Movie> movie) {
     this.movie = movie;
   }
 }

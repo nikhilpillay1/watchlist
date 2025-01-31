@@ -1,6 +1,5 @@
 package com.nikhilpillay.watchlist.service.impl;
 
-import com.nikhilpillay.watchlist.model.Genre;
 import com.nikhilpillay.watchlist.model.Movie;
 import com.nikhilpillay.watchlist.model.MovieSubtitle;
 import com.nikhilpillay.watchlist.repository.MovieRepository;
@@ -23,9 +22,6 @@ public class MovieServiceImpl implements MovieService {
   public void submitMovie(Movie movie) {
     for (MovieSubtitle subtitle : movie.getSubtitles()) {
       subtitle.setMovie(movie);
-    }
-    for (Genre genre : movie.getGenres()) {
-      genre.setMovie(movie);
     }
     repository.save(movie);
   }

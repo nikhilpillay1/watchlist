@@ -27,8 +27,12 @@ public class Movie {
 
   private String name;
 
-  @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-  @JsonManagedReference
+  @ManyToMany
+  @JoinTable(
+      name = "movie_genre",
+      joinColumns = @JoinColumn(name = "movie_id"),
+      inverseJoinColumns = @JoinColumn(name = "genre_id")
+  )
   private List<Genre> genres = new ArrayList<>();
 
   @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
