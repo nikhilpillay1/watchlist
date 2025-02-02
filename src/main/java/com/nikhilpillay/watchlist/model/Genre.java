@@ -1,6 +1,7 @@
 package com.nikhilpillay.watchlist.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class Genre {
   private String name;
 
   @ManyToMany(mappedBy = "genres")
+  @JsonIgnore
   private List<Movie> movie = new ArrayList<>();
 
   public Long getId() {

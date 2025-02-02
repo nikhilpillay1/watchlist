@@ -30,4 +30,10 @@ public class GenreController {
     return ResponseEntity.ok(genres);
   }
 
+  @DeleteMapping("delete/{id}")
+  public ResponseEntity<Void> deleteGenre(@PathVariable Long id) {
+    genreService.deleteById(id);
+    return ResponseEntity.noContent().build();
+  }
+
 }
